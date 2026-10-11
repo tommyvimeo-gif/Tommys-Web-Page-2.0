@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomaž Dolar – Moderni digitalni renesančni ustvarjalec</title>
+    <meta name="description" content="Tomaž Dolar – polimat, inovator, ustvarjalec vsebin, tehnološki navdušenec. Keep Learning! Keep Designing.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-secondary: #0a0a0a;
+            --text: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --accent: #2997ff;
+            --accent-hover: #0071e3;
+            --card-bg: rgba(29, 29, 31, 0.7);
+            --border: rgba(255,255,255,0.1);
+            --gradient: linear-gradient(135deg, #2997ff, #5856d6, #af52de);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Apple-style background */
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at 20% 50%, rgba(41,151,255,0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(175,82,222,0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(88,86,214,0.1) 0%, transparent 50%),
+                        #000;
+            animation: bgShift 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgShift {
+            0% { background-position: 0% 0%, 100% 0%, 50% 100%; }
+            100% { background-position: 100% 50%, 0% 100%, 20% 0%; }
+        }
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 50px 160px, rgba(255,255,255,0.25), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.15), transparent),
+                radial-gradient(1.5px 1.5px at 130px 80px, rgba(255,255,255,0.2), transparent);
+            background-size: 200px 200px;
+            animation: particleMove 60s linear infinite;
+        }
+        @keyframes particleMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+        .hero-image {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.2);
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(41,151,255,0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #fff, #a1a1a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            font-weight: 300;
+        }
+        .hero .moto {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 980px;
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* About / Bio */
+        .bio-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .bio-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .bio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .bio-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .bio-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Grid of topics */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .topic-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .topic-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(41,151,255,0.4);
+            box-shadow: 0 25px 50px rgba(41,151,255,0.15);
+        }
+        .topic-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+        .topic-card:hover img { transform: scale(1.08); }
+        .topic-card-content {
+            padding: 1.5rem;
+        }
+        .topic-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .topic-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Video embeds */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #111;
+            border: 1px solid var(--border);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* Image galleries */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Full section pages content */
+        .full-section {
+            padding-top: 6rem;
+        }
+        .full-section .long-text {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+        .full-section .long-text p { margin-bottom: 1.2rem; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        .moto-footer {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text);
+            margin: 1.5rem 0;
+            letter-spacing: -0.01em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 0 1rem; height: auto; min-height: 52px; flex-wrap: wrap; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+            .nav-links { gap: 0.8rem; font-size: 0.8rem; }
+            .hero { padding: 5rem 1.5rem 3rem; }
+            section { padding: 3rem 1.5rem; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Smooth fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="particles"></div>
+
+    <nav>
+        <a href="#home" class="nav-logo">Tomaž Dolar</a>
+        <ul class="nav-links">
+            <li><a href="#o-meni">O meni</a></li>
+            <li><a href="#tehnologija">Tehnologija</a></li>
+            <li><a href="#gaming">Gaming</a></li>
+            <li><a href="#superavti">Superavti</a></li>
+            <li><a href="#vr">VR & Sim</a></li>
+            <li><a href="#apple">Apple</a></li>
+            <li><a href="#kreativnost">Kreativnost</a></li>
+            <li><a href="#glasba">Glasba</a></li>
+            <li><a href="#astronomija">Astronomija</a></li>
+            <li><a href="#youtube">YouTube</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Tomaž Dolar" class="hero-image" id="profile-img">
+        <h1>Tomaž Dolar</h1>
+        <p class="tagline">Moderni digitalni renesančni ustvarjalec · Polimat · Inovator · Ustvarjalec vsebin</p>
+        <p class="moto">Keep Learning! Keep Designing.</p>
+    </header>
+
+    <!-- O MENI -->
+    <section id="o-meni" class="fade-in">
+        <h2 class="section-title">Kdo sem?</h2>
+        <p class="section-subtitle">Če bi moral v eni sami povedi razložiti, kdo sem, bi rekel, da sem moderni digitalni renesančni ustvarjalec, polimat, inovator, tehnološki navdušenec in ustvarjalec vsebin, ki meje med različnimi področji vidi bolj kot povezave kot pa kot ločene predalčke.</p>
+        
+        <div class="bio-content">
+            <div class="bio-card">
+                <h3>Moderni polimat</h3>
+                <p>Beseda polimat mi je blizu zato, ker opisuje človeka, ki ga zanima več različnih področij in med njimi išče povezave. V preteklosti so bili takšni ljudje Leonardo da Vinci, Nikola Tesla, Isaac Newton … Danes je takšno razmišljanje mogoče ponovno razviti zaradi interneta in digitalne tehnologije.</p>
+                <p>Zanima me tehnologija, računalništvo, Apple, umetna inteligenca, videoigre, virtualna resničnost, oblikovanje prostora, avtomobili, glasba, fotografija, video produkcija, astronomija, moda, dizajn, simulacije in futurizem.</p>
+            </div>
+            <div class="bio-card">
+                <h3>Moja filozofija</h3>
+                <p>Življenje ni tekmovanje v tem, kdo ima največ denarja. Veliko bolj pomembni so mi ljudje. Identiteta je pomembnejša od denarja. Verjamem v mentaliteto obilja: namesto »Tega ne morem« se vprašam »Kako bi lahko?«.</p>
+                <p>Smo do neke mere oblikovalci svojega življenja. Dom naj bi človeka navdihoval – osebni kreativni laboratorij v stilu Apple Store + futuristični laboratorij + Tony Starkov lab.</p>
+            </div>
+            <div class="bio-card">
+                <h3>Kaj delam?</h3>
+                <p>Ukvarjam se z ustvarjanjem, tehnologijo, digitalnimi vsebinami, oblikovanjem, raziskovanjem novih tehnologij, gamingom, VR, avtomobili, glasbo, notranjim oblikovanjem in različnimi kreativnimi projekti. Sem digitalni multipraktik. Ne želim biti samo potrošnik tehnologije – želim biti njen soustvarjalec.</p>
+                <p><strong>Nisem samo uporabnik prihodnosti. Želim biti njen soustvarjalec.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEHNOLOGIJA -->
+    <section id="tehnologija" class="full-section fade-in">
+        <h2 class="section-title">Tehnologija</h2>
+        <p class="section-subtitle">Računalniki, pametni telefoni, tablice, igralne konzole, virtualna resničnost, umetna inteligenca, programska oprema, računalniška grafika in prihodnost digitalnih naprav.</p>
+        <div class="long-text">
+            <p>Tehnologija je ena največjih rdečih niti mojega življenja. Posebej me zanima Apple in njegov način razmišljanja o izdelkih – dizajn, uporabniška izkušnja, integracija strojne in programske opreme. Računalnik zame ni samo naprava za brskanje po internetu. Lahko je studio, laboratorij, montažna postaja, oblikovalsko orodje, glasbeni studio, igralna platforma, raziskovalni center.</p>
+            <p>Umetna inteligenca ni samo chatbot – je orodje za razmišljanje, raziskovanje, oblikovanje, ustvarjanje slik, pisanje, programiranje in razvoj novih idej. Pomembno pa je, da človek ostane ustvarjalec. AI je lahko pomočnik. Človek pa mora imeti vizijo. Zame je pomembna kombinacija: človek + tehnologija + domišljija.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop" alt="Tehnologija">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop" alt="AI">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop" alt="Cyber">
+            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop" alt="Code">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop" alt="Workspace">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop" alt="Future">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop" alt="Laptop">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop" alt="Coding">
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop" alt="Screen">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop" alt="Developer">
+        </div>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/vRWpTRweT8k" title="Apple Mac" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Hai1smXTs1g" title="RAM AI" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMING -->
+    <section id="gaming" class="full-section fade-in">
+        <h2 class="section-title">Gaming & Gaming Setups</h2>
+        <p class="section-subtitle">Od Wolfenstein 3D in Doom do PlayStation, Steam Deck, VR in sodobnih simulatorjev. Gaming je kombinacija tehnologije, oblikovanja, zgodbe, umetnosti in interakcije.</p>
+        <div class="long-text">
+            <p>Videoigre so pomemben del moje osebne zgodovine. Računalnik je bil portal v druge svetove. Danes me zanimajo grafični pogoni, zmogljivost strojne opreme, ločljivost, frekvenca osveževanja, fizika, virtualna resničnost in prihodnost interaktivnih svetov. Gaming setupi, konzole PlayStation, Xbox, Nintendo Switch – vse to je del mojega sveta.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop" alt="Gaming">
+            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop" alt="Console">
+            <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=400&fit=crop" alt="PS5">
+            <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&h=400&fit=crop" alt="Controller">
+            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop" alt="PC Gaming">
+            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop" alt="Setup">
+            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop" alt="RGB">
+            <img src="https://images.unsplash.com/photo-1556438064-2d7646166914?w=600&h=400&fit=crop" alt="Xbox">
+            <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=600&h=400&fit=crop" alt="Nintendo">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop" alt="Arcade">
+        </div>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/bogBYkPymfQ" title="Crew Motorfest Lamborghini" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/BB3gc2WpxZs" title="High On Life 2" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUPERAVTI -->
+    <section id="superavti" class="full-section fade-in">
+        <h2 class="section-title">Superavti – Ferrari, Lamborghini, McLaren</h2>
+        <p class="section-subtitle">Superšportni avtomobili kot skulpture na kolesih. Oblikovanje, proporci, aerodinamika, tehnologija in občutek.</p>
+        <div class="long-text">
+            <p>Posebej me privlačijo Ferrari, Lamborghini in McLaren. Ne zanima me samo cena – zanimajo me oblikovanje, proporci, aerodinamika, materiali in občutek, ki ga avtomobil ustvarja. Superavtomobil lahko razumemo kot nekakšno skulpturo na kolesih. Zato se avtomobili povezujejo tudi z mojim zanimanjem za dizajn. V The Crew Motorfest in drugih igrah uživam v vožnji teh legend.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&h=400&fit=crop" alt="Ferrari">
+            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=400&fit=crop" alt="Lamborghini">
+            <img src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?w=600&h=400&fit=crop" alt="McLaren">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=400&fit=crop" alt="Supercar">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=400&fit=crop" alt="Sports car">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&h=400&fit=crop" alt="Red car">
+            <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop" alt="Luxury">
+            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&h=400&fit=crop" alt="Hypercar">
+            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&h=400&fit=crop" alt="Detail">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&h=400&fit=crop" alt="Night car">
+        </div>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/mWPDASNdunA" title="McLaren P1" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/wwrqV_udkcE" title="LaFerrari" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/bogBYkPymfQ" title="Lamborghini Revuelto" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- VR & SIM RIGS -->
+    <section id="vr" class="full-section fade-in">
+        <h2 class="section-title">Virtual Reality & Sim Rigs</h2>
+        <p class="section-subtitle">Pri VR lahko postanemo del prostora. Simulatorji letenja in dirkanja – več kot običajna videoigra, simulacijsko okolje.</p>
+        <div class="long-text">
+            <p>Virtualna resničnost me posebej zanima, ker predstavlja eno od možnosti prihodnosti računalništva. Pri klasičnem računalniku gledamo v ekran. Pri VR pa lahko postanemo del prostora. VR lahko vpliva na izobraževanje, simulacije, oblikovanje, arhitekturo, igre, treninge in komunikacijo. Ko združiš računalnik, volan, pedala, zaslon ali VR in realistično programsko opremo, dobiš simulacijsko okolje.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=600&h=400&fit=crop" alt="VR Headset">
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600&h=400&fit=crop" alt="VR Experience">
+            <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=600&h=400&fit=crop" alt="Sim Racing">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Racing Wheel">
+            <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=600&h=400&fit=crop" alt="Flight Sim">
+            <img src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=600&h=400&fit=crop" alt="Cockpit">
+            <img src="https://images.unsplash.com/photo-1616587894289-86480e533129?w=600&h=400&fit=crop" alt="VR Gaming">
+            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop" alt="Immersion">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" alt="Tech VR">
+            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop" alt="Setup VR">
+        </div>
+    </section>
+
+    <!-- APPLE -->
+    <section id="apple" class="full-section fade-in">
+        <h2 class="section-title">Apple Ekosistem · iPhone · Photography · Filmmaking</h2>
+        <p class="section-subtitle">Dizajn, uporabniška izkušnja, integracija. Apple kot način razmišljanja o izdelkih.</p>
+        <div class="long-text">
+            <p>Apple mi ni zanimiv samo zaradi logotipa ali prestiža. Zanimajo me dizajn, uporabniška izkušnja, integracija strojne in programske opreme ter način, kako tehnologijo približati človeku. iPhone, Mac, fotografija in video produkcija so del mojega ustvarjalnega ekosistema.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&h=400&fit=crop" alt="MacBook">
+            <img src="https://images.unsplash.com/photo-1592890288564-76628a30a657?w=600&h=400&fit=crop" alt="iPhone">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop" alt="Apple">
+            <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=600&h=400&fit=crop" alt="iPhone Photo">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop" alt="Camera">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&h=400&fit=crop" alt="Filmmaking">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop" alt="Cinema">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Studio">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop" alt="Lens">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&h=400&fit=crop" alt="Photo">
+        </div>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/zumlaYlOZC4" title="Mac Mini" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/Ki1SKCemC2o" title="Hibridni ekosistem" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- KREATIVNOST / OBLIKOVANJE -->
+    <section id="kreativnost" class="full-section fade-in">
+        <h2 class="section-title">Kreativnost · Oblikovanje prostora · Vizualna ustvarjalnost</h2>
+        <p class="section-subtitle">Dom kot kreativni laboratorij. Prostor z značajem, funkcijo in zgodbo. Mansarda kot kombinacija Apple Store, futurističnega laboratorija in Tony Starkovega laba.</p>
+        <div class="long-text">
+            <p>Pri prostoru me ne zanima samo, ali je lep. Zanima me, ali ima prostor značaj, funkcijo in zgodbo. Prostor mora človeku nekaj dati – mir, ustvarjalnost, energijo, laboratorij, kino, studio, igralnico. Idealni dom je osebni kreativni laboratorij, kjer se združujejo tehnologija, dizajn in udobje. Gaming setup, simulator, projektor, domači kino, glasbeni studio, VR, 3D tiskalnik, knjižnica … To ni samo zbirka stvari – to je ideja življenjskega prostora.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop" alt="Interior">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=400&fit=crop" alt="Modern Room">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop" alt="Design">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&h=400&fit=crop" alt="Living">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="House">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=400&fit=crop" alt="Architecture">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="Office">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&h=400&fit=crop" alt="Studio">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" alt="Decor">
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=600&h=400&fit=crop" alt="Creative Space">
+        </div>
+    </section>
+
+    <!-- GLASBA -->
+    <section id="glasba" class="full-section fade-in">
+        <h2 class="section-title">Glasba · Deejaying</h2>
+        <p class="section-subtitle">Elektronska glasba, progressive house, melodični progresivni zvok. DJ studio kot laboratorij za zvok.</p>
+        <div class="long-text">
+            <p>Glasba je še eno področje, ki ga vključujem v svoj kreativni svet. Zanimajo me predvsem elektronska glasba, progressive house in melodični progresivni zvok. DJ oprema mi je zanimiva kot tehnologija in kot ustvarjalno orodje. DJ studio ni samo prostor za poslušanje glasbe – je laboratorij za zvok.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=600&h=400&fit=crop" alt="DJ">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop" alt="Music">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=400&fit=crop" alt="Concert">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop" alt="DJ Set">
+            <img src="https://images.unsplash.com/photo-1459749411175-047fc948d9ed?w=600&h=400&fit=crop" alt="Turntable">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop" alt="Studio Music">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&h=400&fit=crop" alt="Headphones">
+            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&h=400&fit=crop" alt="Mixer">
+            <img src="https://images.unsplash.com/photo-1516280440614-62928e0d645c?w=600&h=400&fit=crop" alt="Lights">
+            <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&h=400&fit=crop" alt="Festival">
+        </div>
+    </section>
+
+    <!-- ASTRONOMIJA -->
+    <section id="astronomija" class="full-section fade-in">
+        <h2 class="section-title">Astronomija</h2>
+        <p class="section-subtitle">Planeti, zvezde, galaksije. Človek z majhnim teleskopom ali računalnikom raziskuje vprašanja, stara milijarde let.</p>
+        <div class="long-text">
+            <p>Astronomija človeka hitro postavi v perspektivo. Ko razmišljaš o planetih, zvezdah, galaksijah in ogromnosti vesolja, postane jasno, kako majhen je posameznik. Toda hkrati je fascinantno, da smo kot ljudje sposobni razumeti nekaj tako velikega. To je ena največjih stvari, ki me privlačijo pri znanosti.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&h=400&fit=crop" alt="Galaxy">
+            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&h=400&fit=crop" alt="Space">
+            <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=400&fit=crop" alt="Stars">
+            <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=600&h=400&fit=crop" alt="Nebula">
+            <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=600&h=400&fit=crop" alt="Milky Way">
+            <img src="https://images.unsplash.com/photo-1543722530-d2c3204671e2?w=600&h=400&fit=crop" alt="Planet">
+            <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=600&h=400&fit=crop" alt="Earth">
+            <img src="https://images.unsplash.com/photo-1465101162946-4377e57764d3?w=600&h=400&fit=crop" alt="Telescope">
+            <img src="https://images.unsplash.com/photo-1516339900021-3a4db3f9bba0?w=600&h=400&fit=crop" alt="Night Sky">
+            <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&h=400&fit=crop" alt="Cosmos">
+        </div>
+    </section>
+
+    <!-- MODA -->
+    <section id="moda" class="full-section fade-in">
+        <h2 class="section-title">Moda & Osebni slog</h2>
+        <p class="section-subtitle">Oblačila so način izražanja. Identiteta je pomembnejša od etikete.</p>
+        <div class="long-text">
+            <p>Oblačila niso zame samo praktična stvar. So način izražanja. Podobno kot pri prostoru lahko tudi skozi oblačila pokažeš svojo osebnost. Zanimajo me sodobna moda, športni copati, streetwear, luksuzne znamke in povezovanje klasičnega ter sodobnega. Najprej mora ustrezati tebi.</p>
+        </div>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="Fashion">
+            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop" alt="Style">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop" alt="Shopping">
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&h=400&fit=crop" alt="Clothes">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=400&fit=crop" alt="Streetwear">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=400&fit=crop" alt="Model">
+            <img src="https://images.unsplash.com/photo-1523381210541-8b850cff43cd?w=600&h=400&fit=crop" alt="Sneakers">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&h=400&fit=crop" alt="Outfit">
+            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&h=400&fit=crop" alt="Luxury">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=400&fit=crop" alt="Fashion Detail">
+        </div>
+    </section>
+
+    <!-- YOUTUBE -->
+    <section id="youtube" class="full-section fade-in">
+        <h2 class="section-title">YouTube – Ustvarjanje vsebin</h2>
+        <p class="section-subtitle">Zgodba za izdelkom. Zakaj je tehnologija pomembna? Kam gre v prihodnosti?</p>
+        <div class="long-text">
+            <p>Pri ustvarjanju vsebin me ne zanima samo to, da nekaj pokažem. Zanima me zgodba za izdelkom. Digitalni svet razumem kot ogromno igrišče za ustvarjanje. Moji videi pokrivajo tehnologijo, Apple, gaming (The Crew Motorfest, PS5), superavtomobile in vizije prihodnosti.</p>
+        </div>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/s7v5PznMZFY" title="Moderni polimat" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/jYCH2lHyLkA" title="Neskončna soba" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/bogBYkPymfQ" title="Crew Motorfest" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/mWPDASNdunA" title="McLaren P1" allowfullscreen></iframe>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:2rem;">
+            <a href="https://www.youtube.com/@TomazDolar07" target="_blank" style="color:var(--accent); font-size:1.1rem;">→ Oglej si celoten kanal @TomazDolar07</a>
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="moto-footer">Keep Learning! Keep Designing.</p>
+        <p>Tomaž Dolar – moderni digitalni renesančni ustvarjalec, polimat, inovator, ustvarjalec vsebin, tehnološki navdušenec, gamer, oblikovalec prostora, raziskovalec prihodnosti.</p>
+        <p style="margin-top:1.5rem;">Nisem samo uporabnik prihodnosti. Želim biti njen soustvarjalec.</p>
+        <p style="margin-top:2rem; font-size:0.85rem;">
+            <a href="https://www.youtube.com/@TomazDolar07" target="_blank">YouTube</a> · 
+            Spletna stran ustvarjena z ljubeznijo do tehnologije in dizajna
+        </p>
+    </footer>
+
+    <script>
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth nav highlight (optional simple)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', e => {
+                // let default smooth scroll work
+            });
+        });
+    </script>
+</body>
+</html>
